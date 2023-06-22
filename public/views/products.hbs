@@ -1,0 +1,38 @@
+{{#if products}}
+  <div class="jumbotron text-light mt-5 mb-5">
+    <h1 style="color: black;">Lista de productos disponibles.</h1>
+    <div style="color: black">
+      <div class="row border-bottom">
+        <div class="col-3 p-3 font-weight-bold">Nombre</div>
+        <div class="col-3 p-3 font-weight-bold">Precio</div>
+        <div class="col-3 p-3 font-weight-bold">Descripcion</div>
+      </div>
+      {{#each products}}
+        <div class="row border-bottom">
+          <div class="col-3 p-3">{{this.name}}</div>
+          <div class="col-3 p-3">${{this.price}}</div>
+          <div class="col-3 p-3">{{this.description}}</div>
+          <form
+            action="/carrito/agregar/{{this._id}}"
+            method="post"
+            class="m-auto"
+          >
+            <button type="submit">Agregar</button>
+          </form>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+{{else}}
+  <div class="alert alert-warning fw-bold" role="alert">
+    No se encontraron productos.</div>
+{{/if}}
+
+<div class="d-flex">
+  <form action="/" method="get" class="mr-5">
+    <button class="btn btn-dark">Home</button>
+  </form>
+  <form action="/carrito" method="get">
+    <button class="btn btn-dark">Carrito</button>
+  </form>
+</div>
